@@ -162,6 +162,7 @@ The following requests are implemented:
 - sendMessage(url: string, params: SendMessageParams): Promise<SendMessageResponse>
 - sendMoney(url: string, params: SendMoneyParams): Promise<SendMoneyResponse>
 - setAccountProperty(url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse>
+- uploadTaggedData(url: string, params: UploadTaggedDataParams): Promise<UploadTaggedDataResponse> // only data upload (no file upload) supported
 ````
 
 ### Account
