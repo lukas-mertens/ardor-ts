@@ -337,11 +337,12 @@ export type SendMessageResponse = BroadcastTransactionResponse
 export type UploadTaggedDataParams = {
     chain: ChainId;
     name: string;
+    data: string;
+    secretPhrase: string;
     description?: string;
     tags?: string;
     type?: string;
     channel?: string;
-    data: string;
     [name: string]: secureAny;
 }
 
