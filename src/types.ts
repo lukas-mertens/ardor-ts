@@ -274,9 +274,9 @@ export type SendMoneyResponse = BroadcastTransactionResponse
 
 
 export type BroadcastTransactionParams = {
-    transactionJSON?: objectAny;
+    transactionJSON?: string;
     transactionBytes?: string;
-    prunableAttachmentJSON?: objectAny;
+    prunableAttachmentJSON?: string;
 }
 
 export type BroadcastTransactionResponse = {
@@ -334,6 +334,20 @@ export type SendMessageParams = {
 export type SendMessageResponse = BroadcastTransactionResponse
 
 
+export type UploadTaggedDataParams = {
+    chain: ChainId;
+    name: string;
+    description?: string;
+    tags?: string;
+    type?: string;
+    channel?: string;
+    data: string;
+    [name: string]: secureAny;
+}
+
+export type UploadTaggedDataResponse = BroadcastTransactionResponse
+
+
 export interface IRequest {
     broadcastTransaction(url: string, params: BroadcastTransactionParams): Promise<BroadcastTransactionResponse>;
     decodeToken(url: string, params: DecodeTokenParams): Promise<DecodeTokenResponse>;
@@ -346,6 +360,7 @@ export interface IRequest {
     sendMessage(url: string, params: SendMessageParams): Promise<SendMessageResponse>;
     sendMoney(url: string, params: SendMoneyParams): Promise<SendMoneyResponse>;
     setAccountProperty(url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse>;
+    uploadTaggedData(url: string, params: UploadTaggedDataParams): Promise<UploadTaggedDataResponse>;
 }
 
 

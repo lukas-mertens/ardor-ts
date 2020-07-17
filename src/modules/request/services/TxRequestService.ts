@@ -11,14 +11,14 @@ export default class TxRequestService implements IRequestService {
     private readonly serviceHelper = new ServiceHelper();
 
 
-    public async run(requestType: string, url: string, params: objectAny): Promise<objectAny> {
+    public async run(requestType: string, url: string, params: objectAny, containsPrunableAttachment = false): Promise<objectAny> {
         params.requestType = requestType;
-        return this.postTransactionRequest(url, params).then((response) => {
+        return this.postTransactionRequest(url, params, containsPrunableAttachment).then((response) => {
             return this.serviceHelper.setPromiseReturn(response.data);
         });
     }
 
-    private async postTransactionRequest(url: string, params: objectAny): Promise<objectAny> {
+    private async postTransactionRequest(url: string, params: objectAny, containsPrunableAttachment: boolean): Promise<objectAny> {
         const query = { ...params };
 
         delete query.requestType;
@@ -33,7 +33,6 @@ export default class TxRequestService implements IRequestService {
         if ((response.data as ErrorResponse).errorCode) {
             return this.convertErrorToAxiosResponse(response.data);
         }
-
         const unsignedTransactionBytesHex = response.data.unsignedTransactionBytes;
         const transactionJSON = response.data.transactionJSON;
 
@@ -43,7 +42,12 @@ export default class TxRequestService implements IRequestService {
 
 
         const signedTransactionBytesHex = account.signTransactionBytes(unsignedTransactionBytesHex, params.secretPhrase);
-        return this.broadcast(url + "?requestType=broadcastTransaction", { transactionBytes: signedTransactionBytesHex, transactionJSON });
+        if (containsPrunableAttachment) {
+            const prunableAttachmentJSON = JSON.stringify(transactionJSON.attachment);
+            return this.broadcast(url + "?requestType=broadcastTransaction", { transactionBytes: signedTransactionBytesHex, prunableAttachmentJSON });
+        } else {
+            return this.broadcast(url + "?requestType=broadcastTransaction", { transactionBytes: signedTransactionBytesHex });
+        }
     }
 
     private convertErrorToAxiosResponse(error: ErrorResponse): AxiosResponse {

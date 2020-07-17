@@ -1,4 +1,4 @@
-import { ChainId, ChildTransactionSubtype, ChildTransactionType, DeleteAccountPropertyParams, ErrorResponse, GetBlockchainTransactionsParams, request, SendMessageParams, SendMoneyParams, SetAccountPropertyParams } from "../../src/index";
+import { ChainId, ChildTransactionSubtype, ChildTransactionType, DeleteAccountPropertyParams, ErrorResponse, GetBlockchainTransactionsParams, request, SendMessageParams, SendMoneyParams, SetAccountPropertyParams, UploadTaggedDataParams } from "../../src/index";
 import config from "../config";
 
 
@@ -215,6 +215,23 @@ if (runPostRequests) {
                 };
 
                 const response = await request.sendMessage(config.node.url.testnet, params);
+
+                expect(response.fullHash).toBeDefined();
+                expect(response.requestProcessingTime).toBeDefined();
+            });
+        }
+
+
+        if (postTransactionRequests.uploadTaggedData) {
+            test("uploadTaggedData", async () => {
+                const params: UploadTaggedDataParams = {
+                    chain: ChainId.IGNIS,
+                    secretPhrase: config.account.alice.secret,
+                    name: "module-test",
+                    data: "test-data-" + Date.now()
+                };
+
+                const response = await request.uploadTaggedData(config.node.url.testnet, params);
 
                 expect(response.fullHash).toBeDefined();
                 expect(response.requestProcessingTime).toBeDefined();

@@ -42,5 +42,5 @@ export interface ICurrencyConversionService {
 }
 
 export interface IRequestService {
-    run(requestType: string, url: string, params: objectAny): Promise<objectAny>;
+    run(requestType: string, url: string, params: objectAny, containsPrunableAttachment?: boolean): Promise<objectAny>;
 }
