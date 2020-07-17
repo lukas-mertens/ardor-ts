@@ -13,6 +13,18 @@ export enum ChainId {
 }
 
 
+export enum ChainCurrencyType {
+    ARDOR,
+    IGNIS
+}
+
+
+export enum ChainCurrencyDecimals {
+    ARDOR = 8,
+    IGNIS = 8,
+}
+
+
 export type ErrorResponse = {
     errorDescription: string;
     errorCode: number;
@@ -358,4 +370,9 @@ export interface IAccount {
 export interface ITime {
     convertUnixToArdorTimestamp(timestampInMsec: number, isTestnetTimestamp?: boolean): number;
     convertArdorToUnixTimestamp(timestamp: number, isTestnetTimestamp?: boolean): number;
+}
+
+export interface IChainCurrency {
+    convertToBaseUnit(amount: number, currencyType: ChainCurrencyType): number;
+    convertFromBaseUnit(amount: number, currencyType: ChainCurrencyType): number;
 }

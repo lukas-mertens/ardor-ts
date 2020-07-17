@@ -206,6 +206,20 @@ It provides the following APIs:
 ````
 
 
+### ChainCurrency
+
+The ChainCurrency module handles conversions between a chain currency representation and its base value. <br> 
+For example: ARDR has 8 decimals so that 1 ARDR can be converted to 100000000 ARDR NQTs which is called the base unit here.
+
+It provides the following APIs:
+
+````typescript
+- convertToBaseUnit(amount: number, currencyType: ChainCurrencyType): number;
+- convertFromBaseUnit(amount: number, currencyType: ChainCurrencyType): number;
+````
+
+
+
 ## Module Instantiation
 
 Each module is pre instantiated and importable via the lower case module name. If you need the class definition of a module, import it via the upper case name. For example:

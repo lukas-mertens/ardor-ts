@@ -15,7 +15,8 @@ const config = {
             runTests: true,
             generateToken: true
         },
-        timeModule: true
+        timeModule: true,
+        currencyModule: true
     },
     node: {
         url: {

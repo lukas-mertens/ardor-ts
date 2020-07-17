@@ -1,4 +1,4 @@
-import { objectAny } from "../types";
+import { objectAny, ChainCurrencyType } from "../types";
 
 export interface IPassphraseService {
     run(): string;
@@ -29,7 +29,6 @@ export interface IAccountCheckService {
     run(accountRs: string): boolean;
 }
 
-
 export interface ITimeConversionService {
     ardorToUnixTestnet(timestamp: number): number;
     ardorToUnixMainnet(timestamp: number): number;
@@ -37,6 +36,10 @@ export interface ITimeConversionService {
     unixToArdorMainnet(timestampInMsec: number): number;
 }
 
+export interface ICurrencyConversionService {
+    currToNqt(amount: number, currencyType: ChainCurrencyType): number;
+    nqtToCurr(amount: number, currencyType: ChainCurrencyType): number;
+}
 
 export interface IRequestService {
     run(requestType: string, url: string, params: objectAny): Promise<objectAny>;
