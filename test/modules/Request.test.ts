@@ -45,7 +45,7 @@ if (runGetRequests) {
                 await request.getBalance(config.node.url.testnet + "__", { chain: ChainId.IGNIS, account: config.account.alice.address });
                 fail("should not reach here");
             } catch (e) {
-                expect(e.code).toBe("ENOTFOUND");
+                expect(e.isAxiosError).toBeTruthy();
             }
         });
 
