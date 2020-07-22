@@ -181,7 +181,7 @@ export enum ChildTransactionSubtype {
 
 export type GetBlockchainTransactionsResponse = {
     requestProcessingTime: number;
-    transactions: [ objectAny? ];
+    transactions: objectAny[];
 }
 
 
@@ -191,13 +191,13 @@ export type GetBundlerRatesParams = {
 }
 
 export type GetBundlerRatesResponse = {
-    rates: [{
+    rates: {
         minRateNQTPerFXT: string;
         currentFeeLimitFQT: string;
         chain: number;
         accountRS: string;
         account: string;
-    }];
+    }[];
     requestProcessingTime: string;
 }
 
@@ -214,14 +214,14 @@ export type GetAccountPropertiesResponse = {
     recipientRS?: string;
     recipient?: string;
     requestProcessingTime: number;
-    properties: [{
+    properties: {
         recipientRS?: string;
         recipient?: string;
         setterRS?: string;
         setter?: string;
         property: string;
         value: string;
-    }?];
+    }[];
 }
 
 
