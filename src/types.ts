@@ -257,7 +257,10 @@ export type GetAccountPropertiesResponse = {
 
 export type GetTransactionParams = {
     chain: ChainId;
-    fullHash: string;
+    fullHash?: string;
+    includePhasingResult?: boolean;
+    requireBlock?: string;
+    requireLastBlock?: string;
     [name: string]: secureAny;
 }
 
