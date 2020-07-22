@@ -76,8 +76,8 @@ export type GetBlockchainTransactionsParams = {
     includePhasingResult?: boolean;
     executedOnly?: boolean;
     adminPassword?:	string;
-    requireBlock?: number;
-    requireLastBlock?: number;
+    requireBlock?: string;
+    requireLastBlock?: string;
 }
 
 export enum ParentTransactionType  {
