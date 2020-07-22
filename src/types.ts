@@ -181,7 +181,37 @@ export enum ChildTransactionSubtype {
 
 export type GetBlockchainTransactionsResponse = {
     requestProcessingTime: number;
-    transactions: objectAny[];
+    transactions: Transaction[];
+}
+
+export type Transaction = {
+    signature: string;
+    transactionIndex: number;
+    type: ChildTransactionType | ParentTransactionType;
+    subtype: ChildTransactionSubtype | ParentTransactionSubtype;
+    fxtTransaction: string;
+    phased: boolean;
+    ecBlockId: string;
+    signatureHash: string;
+    attachment: objectAny;
+    senderRS: string;
+    amountNQT: string;
+    recipientRS: string;
+    block: string;
+    blockTimestamp: number;
+    deadline: number;
+    timestamp: number;
+    height: number;
+    senderPublicKey: string;
+    chain: ChainId;
+    feeNQT: string;
+    requestProcessingTime: number;
+    confirmations: number;
+    fullHash: string;
+    version: number;
+    sender: string;
+    recipient: string;
+    ecBlockHeight: number;
 }
 
 
@@ -231,35 +261,7 @@ export type GetTransactionParams = {
     [name: string]: secureAny;
 }
 
-export type GetTransactionResponse = {
-    signature: string;
-    transactionIndex: number;
-    type: ChildTransactionType | ParentTransactionType;
-    subtype: ChildTransactionSubtype | ParentTransactionSubtype;
-    fxtTransaction: string;
-    phased: boolean;
-    ecBlockId: string;
-    signatureHash: string;
-    attachment: objectAny;
-    senderRS: string;
-    amountNQT: string;
-    recipientRS: string;
-    block: string;
-    blockTimestamp: number;
-    deadline: number;
-    timestamp: number;
-    height: number;
-    senderPublicKey: string;
-    chain: ChainId;
-    feeNQT: string;
-    requestProcessingTime: number;
-    confirmations: number;
-    fullHash: string;
-    version: number;
-    sender: string;
-    recipient: string;
-    ecBlockHeight: number;
-}
+export type GetTransactionResponse = Transaction;
 
 
 export type SendMoneyParams = {
