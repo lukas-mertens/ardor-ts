@@ -1,4 +1,5 @@
 # ardor-ts
+[![DepShield Badge](https://depshield.sonatype.org/badges/owner/repository/depshield.svg)](https://depshield.github.io)
 
 An [Ardor](https://ardorplatform.org) client library written in [TypeScript](https://www.typescriptlang.org).
 
